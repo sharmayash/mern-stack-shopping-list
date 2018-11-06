@@ -1,31 +1,33 @@
-import uuid from 'uuid';
-import { Get_items, Add_item, Delete_item } from '../actions/types';
+import { Get_items, Add_item, Delete_item, Items_loading } from '../actions/types';
 
 
 const initialState = {
-    items: [
-        { id: uuid(), name: 'rice' },
-        { id: uuid(), name: 'dood' },
-        { id: uuid(), name: 'dahi' },
-        { id: uuid(), name: 'mil' }
-    ]
+    items: [],
+    loading: false
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case Get_items:
             return {
-                ...state
+                ...state,
+                items: action.payload,
+                loading: false
             }
         case Delete_item:
             return {
                 ...state,
-                items: state.items.filter(item => item.id !== action.payload)
+                items: state.items.filter(item => item._id !== action.payload)
             }
         case Add_item:
             return {
                 ...state,
                 items: [action.payload, ...state.items]
+            }
+        case Items_loading:
+            return {
+                ...state,
+                loading: true
             }
         default:
             return state;

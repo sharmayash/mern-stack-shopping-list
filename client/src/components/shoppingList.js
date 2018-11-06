@@ -21,12 +21,12 @@ class ShoppingList extends Component {
                 <br /><br />
                 <table className="striped centered">
                     <tbody>
-                        {items.map(({id, name }) => (
-                            <tr key={id} className="hoverable">
+                        {items.map(({_id, name }) => (
+                            <tr key={_id} className="hoverable">
                                 <td>
                                     {name}
                                     <a href='!#' className="btn-small waves-effect waves-light red right"
-                                        onClick={this.onDeleteClick.bind(this, id)}
+                                        onClick={this.onDeleteClick.bind(this, _id)}
                                     ><i className="material-icons">delete_outline</i></a>
                                 </td>
                             </tr>
